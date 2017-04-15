@@ -12,6 +12,7 @@ echo " > multi-compiling modules"
 javac9 --module-path libs --module-source-path "./*/src/main/java" -d classes --module monitor
 
 echo " > packaging modules"
+jar9 --create --file mods/monitor.observation.jar -C classes/monitor.observation .
 jar9 --create --file mods/monitor.observer.jar -C classes/monitor.observer .
 jar9 --create --file mods/monitor.observer.alpha.jar -C classes/monitor.observer.alpha .
 # jar9 --create --file mods/monitor.observer.beta.jar -C classes/monitor.observer.beta .
