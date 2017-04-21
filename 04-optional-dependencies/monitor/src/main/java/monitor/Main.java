@@ -51,17 +51,17 @@ public class Main {
 	}
 
 	private static Optional<ServiceObserver> createObserver(String serviceName) {
-		return createAlphaService(serviceName)
-				.or(createBetaService(serviceName))
+		return createAlphaObserver(serviceName)
+				.or(() -> createBetaObserver(serviceName))
 				.or(printfIfEmpty("No observer for %s found.%n", serviceName));
 	}
 
-	private static Optional<ServiceObserver> createAlphaService(String serviceName) {
+	private static Optional<ServiceObserver> createAlphaObserver(String serviceName) {
 		return AlphaServiceObserver.createIfAlphaService(serviceName);
 	}
 
-	private static Supplier<Optional<? extends ServiceObserver>> createBetaService(String serviceName) {
-		return () -> BetaServiceObserver.createIfBetaService(serviceName);
+	private static Optional<ServiceObserver> createBetaObserver(String serviceName) {
+		return BetaServiceObserver.createIfBetaService(serviceName);
 	}
 
 	private static <T> Supplier<Optional<T>> printfIfEmpty(String message, String... args) {
