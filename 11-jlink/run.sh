@@ -6,4 +6,4 @@ echo "--- LAUNCH ---"
 echo " > run monitor"
 echo ""
 
-java9 --module-path libs:mods --module monitor
+java9 --module-path mods --module monitor
